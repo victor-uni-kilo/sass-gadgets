@@ -1,0 +1,222 @@
+// MODULES
+@use 'sass:math';
+@use 'sass:string';
+@use 'sass:list';
+// VARIABLES & FUNCTIONS
+
+$phi: 1.618;
+
+// golden ratio scaling
+@function size($basis, $level) {
+  @if $level < 0 {
+    @return $basis * math.pow($phi, math.abs($level));
+  } @else {
+    @return math.div($basis, math.pow($phi, $level));
+  }
+}
+
+@function chain($basis, $levels...) {
+  $result: 0;
+  @each $level in $levels {
+    $result: $result + size($basis, $level)
+  }
+  @return $result;
+}
+
+// helper functions:
+@function flex-width($track-count, $col-gap-level) {
+  @if $col-gap-level == "none" {
+    @return math.div(100%, $track-count);
+  } @else {
+    @return math.div(100%, $track-count + math.div( $track-count - 1, math.pow($phi, $col-gap-level) ));
+  }
+}
+
+@function flex-gap($track-count, $flex-width) {
+  @return math.div(100% - $flex-width * $track-count, $track-count - 1); 
+}
+
+// LOCAL MIXINS
+// golden proportions - responsive
+
+@mixin gold-main-long-res($level) {
+  width: size(100%, $level);
+  height: size(100%, $level + 1);
+}
+
+@mixin gold-main-short-res($level) {
+  width: size(100%, $level);
+  height: size(100%, $level + 2);
+}
+
+@mixin gold-cross-long-res($level) {
+  width: size(100%, $level + 1);
+  height: size(100%, $level);
+}
+
+@mixin gold-cross-short-res($level) {
+  width: size(100%, $level + 2);
+  height: size(100%, $level);
+}
+
+// golden proportions - fixed
+
+@mixin gold-main-long-fix($basis, $level) {
+  width: size($basis, $level);
+  height: size($basis, $level + 2);
+}
+
+@mixin gold-main-short-fix($basis, $level) {
+  width: size($basis, $level);
+  height: size($basis, $level + 3);
+}
+
+@mixin gold-cross-long-fix($basis, $level) {
+  width: size($basis, $level + 1);
+  height: size($basis, $level + 1);
+}
+
+@mixin gold-cross-short-fix($basis, $level) {
+  width: size($basis, $level + 2);
+  height: size($basis, $level + 1);
+}
+
+// proportional generation at level zero
+
+@mixin gold-landscape-fix($basis, $level) {
+  width: size($basis, $level);
+  height: size($basis, $level + 1);
+}
+
+@mixin gold-portrait-fix($basis, $level) {
+  width: size($basis, $level);
+  height: size($basis, $level - 1);
+}
+
+@mixin gold-square-fix($basis, $level) {
+  width: size($basis, $level);
+  height: size($basis, $level);
+}
+
+// EXPORT MIXINS
+// goldBox sets proportions of a div
+
+@mixin goldBox($basis, $proportion, $level) {
+
+  @if $basis == "responsive" { 
+    // slicing at level one - requires parent
+    @if $proportion == "main-long" {  
+      @include gold-main-long-res($level);
+    } @else if $proportion == "main-short" {
+      @include gold-main-short-res($level);
+    } @else if $proportion == "cross-long" {
+      @include gold-cross-long-res($level);
+
+    } @else if $proportion == "cross-short" {
+      @include gold-cross-short-res($level);
+    }
+
+  } @else {
+    // slicing at level one
+    @if $proportion == "main-long" {
+      @include gold-main-long-fix($basis, $level);
+    } @else if $proportion == "main-short" {
+      @include gold-main-short-fix($basis, $level);
+    } @else if $proportion == "cross-long" {  
+      @include gold-cross-long-fix($basis, $level);
+
+    } @else if $proportion == "cross-short" {
+      @include gold-cross-short-fix($basis, $level);
+    // proportional generation at level one
+    } @else if $proportion == "landscape" {
+      @include gold-landscape-fix($basis, $level);
+    
+    } @else if $proportion == "portrait" {
+      @include gold-portrait-fix($basis, $level);
+    
+    } @else if $proportion == "square" {
+      @include gold-square-fix($basis, $level);
+    }
+  } 
+}
+
+@mixin goldSplit($addFlex, $proportion, $level) {
+  // isResponsive
+
+  $isMain: string.slice($proportion, 1, 4);
+  
+  @if $addFlex == "flex"{
+    display: flex;
+    flex-direction: row;
+
+    @if $isMain == "main" {
+      flex-direction: column;
+    }
+
+  }
+
+  // slicing at level one - requires parent
+  @if $proportion == "main-long" { 
+
+    & > *:first-child {
+      @include gold-main-long-res($level);
+    }
+    & > *:last-child {
+      @include gold-main-short-res($level);
+    }
+
+  } @else if $proportion == "main-short" {
+
+    & > *:first-child {
+      @include gold-main-short-res($level);
+    }
+    & > *:last-child {
+      @include gold-main-long-res($level);
+    }
+
+  } @else if $proportion == "cross-long" {
+
+    & > *:first-child {
+      @include gold-cross-long-res($level);
+    }
+    & > *:last-child {
+      @include gold-cross-short-res($level);
+    }
+
+  } @else if $proportion == "cross-short" {
+
+    & > *:first-child {
+      @include gold-cross-short-res($level);
+      background-color: aqua;
+    }
+    & > *:last-child {
+      @include gold-cross-long-res($level);
+      background-color: yellow;
+    }
+
+  }
+}
+
+// FLEXBOX MIXIN
+
+@mixin goldFlex($track-count, $height-level, $col-gap-level, $row-gap-level) {
+
+  $flex-width: flex-width($track-count, $col-gap-level);
+  $flex-gap: flex-gap($track-count, $flex-width);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  column-gap: $flex-gap;
+  
+  & > * {
+    width: $flex-width;
+    height: size($flex-width, $height-level);
+    @if $row-gap-level == "none" {
+      margin-bottom: 0;
+    } @else {
+      margin-bottom: size($flex-gap, $row-gap-level);
+    } 
+  }
+}
+

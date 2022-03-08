@@ -1,0 +1,14 @@
+{
+  "name": "01-golden-ratio-sass",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "yarn server.js",
+    "dev": "",
+    "sass-w": "sass --watch sass/styles.scss public/css/style.css"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "sass": "^1.49.9"
+  }
+}
