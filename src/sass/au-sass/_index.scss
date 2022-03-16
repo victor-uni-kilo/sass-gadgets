@@ -187,11 +187,9 @@ $phi: 1.618;
 
     & > *:first-child {
       @include gold-cross-short-res($level);
-      background-color: aqua;
     }
     & > *:last-child {
       @include gold-cross-long-res($level);
-      background-color: yellow;
     }
 
   }
