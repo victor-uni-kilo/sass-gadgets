@@ -5,13 +5,15 @@
   "scripts": {
     "dev": "webpack -w --mode development",
     "prod": "webpack --mode production",
-    "pug-w": "pug -w src/views/pages -o dist/ -P",
+    "pug-w": "pug -w src/views/pages -o dist/pages -P",
     "sass-w": "sass -w src/sass/style.scss dist/css/style.css",
     "ts-w": "tsc -w"
   },
   "license": "MIT",
   "dependencies": {
-    "file-loader": "^6.2.0"
+    "-": "0.0.1",
+    "file-loader": "^6.2.0",
+    "npm": "^8.6.0"
   },
   "devDependencies": {
     "css-loader": "^6.7.1",

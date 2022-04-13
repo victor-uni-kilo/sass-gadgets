@@ -1,0 +1,38 @@
+// GENERATOR MODULES
+@use '../abstracts/mixins' as mix;
+@use '../abstracts' as ab;
+
+@include mix.image-link('.logo-link');
+
+@mixin navbar {
+  nav {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid black;
+    background-color: ab.$color-main;
+    // & > container-logo
+
+    & > ul {
+      grid-column: 3 / span 2;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & > li > a {
+      pointer-events: auto;
+      color: ab.$color-dark;
+      text-transform: uppercase;
+      text-align: right;
+
+        &:hover {
+          color: ab.$color-highlight;
+        }
+      }
+    }
+  }
+}

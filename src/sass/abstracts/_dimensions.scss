@@ -1,0 +1,65 @@
+@use './taxonomy' as *;
+
+// GRID GUIDES
+$gutter: (
+  // 4
+  nth($sizes, 1): 1rem,
+  //landscape 4:8:12
+  // 8
+  nth($sizes, 2): 1rem,
+  // 12
+  nth($sizes, 3): 1rem,
+  nth($sizes, 4): 1rem,
+  nth($sizes, 5): 1rem,
+);
+
+$outer-margin: (
+  // 4
+  nth($sizes, 1): 1rem,
+  //landscape 4:8:12
+  // 8
+  nth($sizes, 2): 2rem,
+  // 12
+  nth($sizes, 3): 8rem,
+  nth($sizes, 4): 12rem,
+  nth($sizes, 5): 18rem,
+);
+
+$column-count: (
+  // 4
+  nth($sizes, 1): 4,
+  //landscape 4:8:12
+  // 8
+  nth($sizes, 2): 8,
+  // 12
+  nth($sizes, 3): 12,
+  nth($sizes, 4): 12,
+  nth($sizes, 5): 12,
+);
+
+
+$column-count: (
+  // 4
+  nth($sizes, 1): 4,
+  //landscape 4:8:12
+  // 8
+  nth($sizes, 2): 8,
+  // 12
+  nth($sizes, 3): 12,
+  nth($sizes, 4): 12,
+  nth($sizes, 5): 12,
+);
+
+
+// Z - DEPTH 
+$z-depth: (
+  'back': 0,
+  'base': 10,
+  'front': 20,
+  'popup': 30,
+  'ui-tools': 40,
+);
+
+// PADDING
+
+

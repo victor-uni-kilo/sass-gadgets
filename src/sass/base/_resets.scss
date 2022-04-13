@@ -1,10 +1,19 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  img{
-    //removes whitespace after
-    display: block; 
-  }
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+img {
+  //removes whitespace after
+  display: block; 
+}
+
+ 

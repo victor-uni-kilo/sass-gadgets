@@ -1,0 +1,21 @@
+@use '../abstracts' as ab;
+
+@mixin grid{
+  display: grid;
+  width: 100%;
+  z-index: map-get(ab.$z-depth, 'base');
+  background-color: ab.$color-main;
+
+  @each $breakpoint in map-keys(ab.$breakpoints) {
+
+    @include ab.respond-to($breakpoint){
+      
+      $n-col: map-get(ab.$column-count, $breakpoint);
+
+      grid-template-columns: repeat($n-col, 1fr);   
+      column-gap: map-get(ab.$gutter, $breakpoint); 
+      padding: 0 map-get(ab.$outer-margin, $breakpoint); 
+
+    }
+  }
+}
