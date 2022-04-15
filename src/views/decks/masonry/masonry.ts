@@ -1,1 +1,1 @@
-const masonry = document.querySelectorAll<HTMLDivElement>(".masonry")!;
+export const masonry = document.querySelectorAll<HTMLDivElement>(".masonry")!;

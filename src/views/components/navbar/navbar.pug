@@ -1,10 +1,5 @@
+include ./navbar.conf.pug
 include ../../basics/image-link/_image-link
-
--const logo = {href:'index.html', src:'../images/pug-logo.svg', alt:'Logo home link'}
--const pageLinkList = []
--pageLinkList.push({name:'Home', url: '#'})
--pageLinkList.push({name:'About', url: 'about.html'})
--pageLinkList.push({name:'Contact', url: '#'})
 
 nav
   +image-link('logo-link', logo.href, logo.src, logo.alt)

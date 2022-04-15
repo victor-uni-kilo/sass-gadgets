@@ -1,6 +1,8 @@
-import { orientImage } from "@ts/orientImage";
+import { orientImage } from "@ts/func/orientImage";
 
-const imageOrientation =
-  document.querySelectorAll<HTMLImageElement>(".orientation")!;
-alert(imageOrientation);
-imageOrientation.forEach(element => orientImage(element));
+export const imageLink = (): void => {
+  const imageOrientation =
+    document.querySelectorAll<HTMLImageElement>(".orientation")!;
+
+  imageOrientation.forEach(element => orientImage(element));
+};

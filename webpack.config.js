@@ -40,7 +40,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'pages/index.html',
-      template: 'src/views/index.pug',
+      template: 'src/views/pages/index.pug',
       inject: false
     }),
     new MiniCssExtractPlugin({
