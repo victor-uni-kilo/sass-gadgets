@@ -1,0 +1,51 @@
+@use '../../abstracts'as *;
+
+@mixin scrollbar($size, $foreground-color, $background-color) {
+
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    @if $size==0 {
+      display: none;
+    }
+
+    @else {
+      width: $size;
+      height: $size;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Firefox
+  & {
+    @if $size==0 {
+      scrollbar-width: none; //(auto, none)
+    }
+
+    @else if $size <=6px and $size>0px {
+      scrollbar-width: thin; //(auto, none)
+    }
+
+    @else {
+      scrollbar-width: auto;
+    }
+
+    scrollbar-color: $foreground-color $background-color;
+  }
+
+  // For IE and Edge
+  & {
+    @if $size <=0px {
+      -ms-overflow-style: none;
+    }
+
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}

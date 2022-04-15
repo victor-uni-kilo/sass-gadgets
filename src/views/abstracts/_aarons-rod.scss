@@ -1,0 +1,15 @@
+@use "../utils/au-sass/au-sass" as au;
+
+$size-levels: (
+  "n5": au.size(100%, -5),
+  "n4": au.size(100%, -4),
+  "n3": au.size(100%, -3),
+  "n2": au.size(100%, -2),
+  "n1": au.size(100%, -1),
+  "base": 100%,
+  "p1": au.size(100%, 1),
+  "p2": au.size(100%, 2),
+  "p3": au.size(100%, 3),
+  "p4": au.size(100%, 4),
+  "p5": au.size(100%, 5),
+);

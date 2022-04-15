@@ -1,0 +1,51 @@
+@use "../../abstracts" as *;
+@use "../../basics" as *;
+
+//(fixed=true)
+@mixin navbar {
+  nav {
+    position: relative; //do fixed
+    padding-left: 10rem; // ADD TOGETHER RESPONSIVE
+    padding-right: 10rem; // ADD TOGETHER RESPONSIVE
+
+    padding-top: 0.25rem; // ADD TOGETHER RESPONSIVE
+    padding-bottom: 0.25rem; // ADD TOGETHER RESPONSIVE
+
+    height: 50px; // CONTROL
+    display: flex;
+    align-items: center;
+    justify-content: space-between; //2nd CTRL
+    //visual styles
+    border-bottom: 1px solid black;
+    //IF has set color $color-main;
+    //ELSE TRANSPARENT
+    background-color: transparent;
+
+    @include image-link(".logo-link");
+
+    & > div {
+      & > ul {
+        display: flex;
+        justify-content: space-between;
+
+        & > li {
+          margin-left: 2rem; // CONTROL, RESPONSIVE
+
+          & > a {
+            pointer-events: auto;
+            font-size: smaller; //CONTROL, RESPONSIVE, SIZE CATEGORY
+            font-weight: bold; //CONTROL, RESPONSIVE, SIZE CATEGORY
+
+            //visual styles
+            text-transform: uppercase;
+            color: $color-dark;
+
+            &:hover {
+              color: $color-highlight;
+            }
+          }
+        }
+      }
+    }
+  }
+}

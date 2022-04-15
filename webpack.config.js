@@ -5,9 +5,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const pug = {
   test: /\.pug$/,
   exclude: /node_modules/,
-  loader: 'simple-pug-loader', // ['file-loader?name=pages/[name].html', 'pug-html-loader?pretty&exports=false']
+  loader: 'simple-pug-loader',
   options: {
-    pretty: true
+    pretty: true // HIGH VULNERABILITY 
   }
 }
 
@@ -30,7 +30,6 @@ const tsc = {
 }
 
 // config
-
 const config = {
   entry: './src/app.ts',
   output: {
@@ -41,7 +40,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'pages/index.html',
-      template: 'src/views/pages/index.pug',
+      template: 'src/views/index.pug',
       inject: false
     }),
     new MiniCssExtractPlugin({
@@ -51,6 +50,15 @@ const config = {
   module: {
     rules: [pug, sass, tsc]
   },
+  resolve: {
+    extensions: ['.ts'],
+    alias: {
+      "@ts": path.resolve(__dirname, "./src/ts"),
+      "@blocks": path.resolve(__dirname, "./src/views/blocks"),
+      "@comps": path.resolve(__dirname, "./src/views/components"),
+
+    },
+  }
 }
 
 module.exports = config;

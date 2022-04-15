@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "webpack -w --mode development",
     "prod": "webpack --mode production",
-    "pug-w": "pug -w src/views/pages -o dist/pages -P",
-    "sass-w": "sass -w src/sass/style.scss dist/css/style.css",
+    "pug-w": "pug -w ./src/views/pages/ -o ./dist/pages/ -P",
+    "sass-w": "sass -w ./src/views/style.scss ./dist/css/style.css",
     "ts-w": "tsc -w"
   },
   "license": "MIT",

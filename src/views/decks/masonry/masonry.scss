@@ -1,0 +1,16 @@
+@use "../../abstracts/" as *;
+@use "../../basics" as *;
+
+.masonry {
+  column-width: 30vw; // NOT WELL SUPPORTED
+
+  .card {
+    position: relative;
+    @include image-link(".rollover");
+
+    //visual things
+    & > div {
+      border: 1px solid rebeccapurple;
+    }
+  }
+}

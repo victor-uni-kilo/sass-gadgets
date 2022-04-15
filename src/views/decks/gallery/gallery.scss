@@ -1,0 +1,17 @@
+@use "../../abstracts" as *;
+@use "../../basics/" as *;
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+
+  .card {
+    @include image-link(".rollover");
+
+    //visual things
+    & > div {
+      border: 1px solid rebeccapurple;
+    }
+  }
+}

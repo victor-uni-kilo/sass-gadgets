@@ -1,0 +1,10 @@
+mixin image-link(className, href, imgSrc, imgAlt)
+
+  if className
+    div(class= className)
+      a(href= href)
+        img(src= imgSrc alt= imgAlt)
+  else
+    figure.rollover
+      a(href= href)
+        img(src= imgSrc alt= imgAlt class= "orientation")

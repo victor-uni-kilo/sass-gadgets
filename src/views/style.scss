@@ -1,0 +1,9 @@
+@use "./base" as base;
+@use "./components" as *;
+@use "./decks" as *;
+
+.wrapper {
+  width: 100vw;
+}
+
+@include navbar;

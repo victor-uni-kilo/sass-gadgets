@@ -1,0 +1,22 @@
+-const masonryFigureList= []
+-masonryFigureList.push({title:'Chanbara', subtitle:'Illu', image:{href:'#', src:'../images/CHNB1.png', alt:'ABC'}})
+-masonryFigureList.push({title:'Chanbara', subtitle:'Illu', image:{href:'#', src:'../images/Jegam.jpg', alt:'ABC'}})
+-masonryFigureList.push({title:'Chanbara', subtitle:'Illu', image:{href:'#', src:'../images/CHNB2.png', alt:'ABC'}})
+-masonryFigureList.push({title:'Chanbara', subtitle:'Illu', image:{href:'#', src:'../images/RAIQA.jpg', alt:'ABC'}})
+-masonryFigureList.push({title:'Chanbara', subtitle:'Illu', image:{href:'#', src:'../images/CHNB2.png', alt:'ABC'}})
+
+
+.masonry 
+  each entry in masonryFigureList 
+  
+    .card
+      +image-link(false , entry.image.href, entry.image.src, entry.image.alt)
+      div
+        .card-info
+          div
+            h3= entry.title
+              a(href= logoHref)
+            p= entry.subtitle
+
+
+
